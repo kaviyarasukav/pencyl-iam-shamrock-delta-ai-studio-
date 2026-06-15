@@ -221,9 +221,6 @@ async function listenForPythonMessages() {
 }
 
 // --- PYTHON QUANT ENGINE BRIDGE ---
-const PYTHON_CMD = process.platform === "win32" ? "python" : "python3";
-const PIP_CMD = process.platform === "win32" ? "pip" : "pip3";
-
 let quantEngine: ChildProcess | null = null;
 let isQuantEngineIntentionalClose = false;
 
@@ -242,7 +239,7 @@ async function spawnEngine() {
   }
 
   quantEngine = spawn(
-    PYTHON_CMD,
+    "python3",
     [enginePath, "--pub-port", "5555", "--pull-port", "5556"],
     { stdio: ["ignore", "pipe", "pipe"] },
   );
@@ -287,7 +284,7 @@ function startQuantEngine() {
   console.log("[Quant Engine] Checking Python environment in background...");
   // Check for critical dependencies
   exec(
-    `${PYTHON_CMD} -c "import numpy; import pandas; import requests; import yfinance; import zmq; print('READY')"`,
+    "python3 -c \"import numpy; import pandas; import requests; import yfinance; import zmq; print('READY')\"",
     (err) => {
       if (err) {
         console.log(
@@ -296,11 +293,11 @@ function startQuantEngine() {
 
         // Try multiple ways to install: pip3, pip, and with/without --break-system-packages
         const commands = [
-          `curl -sS https://bootstrap.pypa.io/get-pip.py -o get-pip.py && ${PYTHON_CMD} get-pip.py --break-system-packages && ${PYTHON_CMD} -m pip install numpy pandas requests yfinance vaderSentiment feedparser python-dateutil ccxt websockets pyzmq --break-system-packages --prefer-binary`,
-          `${PYTHON_CMD} -m pip install numpy pandas requests yfinance vaderSentiment feedparser python-dateutil ccxt websockets pyzmq --break-system-packages --prefer-binary`,
-          `${PIP_CMD} install numpy pandas requests yfinance vaderSentiment feedparser python-dateutil ccxt websockets pyzmq --break-system-packages --prefer-binary`,
-          `${PYTHON_CMD} -m pip install numpy pandas requests yfinance vaderSentiment feedparser python-dateutil ccxt websockets pyzmq --user --prefer-binary`,
-          `${PIP_CMD} install numpy pandas requests yfinance vaderSentiment feedparser python-dateutil ccxt websockets pyzmq --user --prefer-binary`,
+          "curl -sS https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py --break-system-packages && python3 -m pip install numpy pandas requests yfinance vaderSentiment feedparser python-dateutil ccxt websockets pyzmq --break-system-packages --prefer-binary",
+          "python3 -m pip install numpy pandas requests yfinance vaderSentiment feedparser python-dateutil ccxt websockets pyzmq --break-system-packages --prefer-binary",
+          "pip3 install numpy pandas requests yfinance vaderSentiment feedparser python-dateutil ccxt websockets pyzmq --break-system-packages --prefer-binary",
+          "python3 -m pip install numpy pandas requests yfinance vaderSentiment feedparser python-dateutil ccxt websockets pyzmq --user --prefer-binary",
+          "pip3 install numpy pandas requests yfinance vaderSentiment feedparser python-dateutil ccxt websockets pyzmq --user --prefer-binary",
         ];
 
         const tryInstall = (index: number) => {

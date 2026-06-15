@@ -4,7 +4,6 @@ export interface TickerData {
   priceChangePercent: string;
   lastPrice: string;
   volume: string;
-  quoteVolume: string;
   highPrice: string;
   lowPrice: string;
 }

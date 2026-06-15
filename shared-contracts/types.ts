@@ -176,7 +176,7 @@ export interface ConfluenceSignal {
   timestamp: string;
   strategy_id?: string;
   ticker: string;
-  direction: 'LONG' | 'SHORT' | 'CLOSE_LONG' | 'CLOSE_SHORT' | 'EXIT';
+  direction: 'LONG' | 'SHORT';
   trigger_price: number;
   leverage_multiplier?: number;
   conditions_met: {
