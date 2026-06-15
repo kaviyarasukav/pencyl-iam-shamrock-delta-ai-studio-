@@ -125,7 +125,7 @@ export default function CryptoDashboard() {
   }, [dragX, isMobileMenuOpen]);
 
   const selectedTicker = tickers.find(t => t.symbol === selectedSymbol);
-  const lastKline = klines[klines?.length - 1 || 0];
+  const lastKline = klines.length > 0 ? klines[klines.length - 1] : undefined;
 
   const primaryNavItems = [
     { id: 'intel', label: 'Intel', icon: Eye, color: 'text-blue-500' },

@@ -6,3 +6,16 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# SQLite Database
+*.db
+*.db-shm
+*.db-wal
+
+# Python Caches & Downloads
+__pycache__/
+*.py[cod]
+get-pip.py
+
+# Data Files
+*.csv

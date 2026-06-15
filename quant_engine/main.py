@@ -11,6 +11,9 @@ import argparse
 import ccxt.async_support as ccxt
 import pandas as pd
 
+if sys.platform == 'win32':
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
 
 from buffers import OrderBookRingBuffer, TickDataRingBuffer, DOMTracker, SpoofingFilter, SmartTape, IcebergDetector, OptionsAnalyzer, CandleAggregator
 from indicators import IndicatorEngine

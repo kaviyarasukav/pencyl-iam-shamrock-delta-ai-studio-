@@ -12,6 +12,7 @@ export const deltaService: ExchangeService = {
       priceChangePercent: t.priceChangePercent || '0',
       lastPrice: t.lastPrice || '0',
       volume: t.volume || '0',
+      quoteVolume: t.quoteVolume || '0',
       highPrice: t.highPrice || '0',
       lowPrice: t.lowPrice || '0'
     }));
