@@ -1,0 +1,6 @@
+{
+  "name": "pencyl'iam yqlon",
+  "description": "The yqlon model within the pencyl'iam ecosystem: A real-time cryptocurrency dashboard powered by Delta Exchange API, featuring price tracking, 24h changes, and interactive charts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
